@@ -4,6 +4,8 @@ import com.practice.inventoryservice.entities.Product;
 import com.practice.inventoryservice.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
@@ -25,7 +27,7 @@ public class ProductService {
             products.add(
                 Product.builder()
                     .name("Product " + i)
-                    .price(1200 + Math.random() * 10000)
+                    .price(BigDecimal.valueOf(1200 + Math.random() * 10000).setScale(2, RoundingMode.HALF_UP))
                     .quantity(random.nextInt(200))
                     .build()
             );
